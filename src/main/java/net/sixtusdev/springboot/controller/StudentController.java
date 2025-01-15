@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // This means that this class is a Controller
@@ -36,6 +37,16 @@ public class StudentController {
         students.add(new Student(4, "Jane", "Smith"));
 
         return students;
+    }
+
+    // Spring Boot REST API with Path Variable
+    // HTTP GET Request
+    // http://localhost:8080/students/1 to access this method
+
+    // {id} is called URI Template Variable
+    @GetMapping("/students/{id}")
+    public Student studentPathVariable(@PathVariable("id") int studentId) {
+        return new Student(studentId, "John", "Doe");
     }
 
 }

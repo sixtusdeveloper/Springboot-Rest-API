@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController // This means that this class is a Controller
@@ -49,6 +50,19 @@ public class StudentController {
             @PathVariable("first-name") String firstName,
             @PathVariable("last-name") String lastName) {
         return new Student(studentId, firstName, lastName);
+    }
+
+    // Spring Boot REST API with Request Parameter
+
+    // HTTP GET Request
+    // http://localhost:8080/students/query?id=1&firstName=John&lastName=Doe to
+    // access this method
+
+    // @RequestParam is used to read the request parameter from the URL
+    @GetMapping("/students/query")
+    public Student studentRequestVariable(@RequestParam int id, @RequestParam String firstName,
+            @RequestParam String lastName) {
+        return new Student(id, firstName, lastName);
     }
 
 }
